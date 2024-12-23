@@ -30,7 +30,6 @@ const Pagination = ({
   );
 };
 
-// Validación de las props usando PropTypes
 Pagination.propTypes = {
   handlePagePrev: PropTypes.func.isRequired,
   handlePageNext: PropTypes.func.isRequired,
