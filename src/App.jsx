@@ -8,14 +8,13 @@ import MaintenanceServices from './pages/MaintenanceServices';
 import MaintenanceForm from './pages/MaintenanceForm';
 import PrivateRoute from './components/PrivateRoute';
 import Header from './components/Header';
-import LogoutButton from './components/LogoutButton';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import './App.css'
 
 function App() {
   return (
     <Router>
-      <LogoutButton />
       <Header />
       <Routes>
         <Route path="/register" element={<Register />} />

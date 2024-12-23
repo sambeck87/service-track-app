@@ -1,6 +1,11 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
+import CarInfo from '../components/CarInfo';
+import MaintenanceServiceList from '../components/MaintenanceServiceList';
+import Pagination from '../components/Pagination';
+import StatusFilter from '../components/StatusFilter';
+import '../styles/elemets_list.css'
 
 const CarDetails = () => {
   const { id: carId } = useParams();
@@ -82,7 +87,6 @@ const CarDetails = () => {
   };
 
   const isNextDisabled = pagination.offset + pagination.limit >= totalItems;
-
   const isPrevDisabled = pagination.offset === 0;
 
   const handleDeleteMaintenanceService = async (serviceId) => {
@@ -96,10 +100,8 @@ const CarDetails = () => {
           }
         };
 
-        // Realiza la solicitud DELETE para eliminar el servicio de mantenimiento
         await axios.delete(`${apiBaseUrl}/api/v1/maintenance_services/${serviceId}`, config);
 
-        // Actualiza el estado eliminando el servicio de la lista
         setMaintenanceServices(maintenanceServices.filter(service => service.id !== serviceId));
       } catch (error) {
         console.error('Error al eliminar el servicio de mantenimiento', error);
@@ -110,46 +112,32 @@ const CarDetails = () => {
   if (!car) return <div>Cargando detalles del auto...</div>;
 
   return (
-    <div>
-      <h2>{car.model} - {car.plate_number}</h2>
-      <p>Año: {car.year}</p>
-      <button onClick={() => navigate(`/cars/${carId}/edit`)}>Editar</button>
+    <div className='card'>
+      <CarInfo car={car} navigate={navigate} carId={carId} />
 
-      <h3>Servicios de Mantenimiento</h3>
-      <button onClick={() => navigate(`/maintenance_services/create?car_id=${carId}`)}>Agregar Servicio de Mantenimiento</button>
-      <select onChange={handleStatusChange} value={statusFilter}>
-        <option value="">Todos los status</option>
-        <option value="pending">Pendiente</option>
-        <option value="in_progress">En progreso</option>
-        <option value="completed">Completado</option>
-      </select>
+      <button onClick={() => navigate(`/maintenance_services/create?car_id=${carId}`)}>
+        Agregar Servicio de Mantenimiento
+      </button>
 
-      <ul>
-        {maintenanceServices.map((service) => (
-          <li key={service.id}>
-            <p><strong>id:</strong> {service.id}</p>
-            <p><strong>Descripción:</strong> {service.description}</p>
-            <p><strong>Fecha:</strong> {service.date}</p>
-            <p><strong>Status:</strong> {service.status}</p>
-            <button onClick={() => navigate(`/maintenance_services/${service.id}/edit`)}>Editar</button>
-            <button onClick={() => handleDeleteMaintenanceService(service.id)}>Eliminar</button>
-          </li>
-        ))}
-      </ul>
+      <StatusFilter
+        value={statusFilter}
+        onChange={handleStatusChange}
+      />
 
-      <div>
-        <label>Paginación:</label>
-        <select onChange={handlePaginationChange} value={pageSize}>
-          <option value="10">10 elementos</option>
-          <option value="50">50 elementos</option>
-          <option value="100">100 elementos</option>
-        </select>
+      <MaintenanceServiceList
+        maintenanceServices={maintenanceServices}
+        navigate={navigate}
+        handleDelete={handleDeleteMaintenanceService}
+      />
 
-        <div>
-          <button onClick={handlePagePrev} disabled={isPrevDisabled}>Anterior</button>
-          <button onClick={handlePageNext} disabled={isNextDisabled}>Siguiente</button>
-        </div>
-      </div>
+      <Pagination
+        handlePagePrev={handlePagePrev}
+        handlePageNext={handlePageNext}
+        isPrevDisabled={isPrevDisabled}
+        isNextDisabled={isNextDisabled}
+        handlePaginationChange={handlePaginationChange}
+        pageSize={pageSize}
+      />
     </div>
   );
 };
