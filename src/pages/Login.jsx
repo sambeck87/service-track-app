@@ -2,6 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import '../styles/forms.css'
 
 const Login = () => {
   const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
@@ -38,26 +39,28 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div className="form-card">
       <h2>Iniciar sesión</h2>
       <form onSubmit={handleSubmit}>
-        <input
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          placeholder="Email"
-        />
-        <input
-          type="password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-          placeholder="Contraseña"
-        />
+        <div className="form-inputs">
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            placeholder="Email"
+          />
+          <input
+            type="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            placeholder="Contraseña"
+            />
+        </div>
         <button type="submit">Iniciar sesión</button>
       </form>
-      <button onClick={() => navigate(`/register`)}>Registarse</button>
+        <button onClick={() => navigate(`/register`)}>Registarse</button>
     </div>
   );
 };

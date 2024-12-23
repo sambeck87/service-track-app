@@ -2,6 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import '../styles/forms.css'
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -44,10 +45,10 @@ const Register = () => {
   };
 
   return (
-    <div>
+    <div className='form-card'>
       <h2>Registrar Usuario</h2>
       <form onSubmit={handleSubmit} autoComplete="off">
-        <div>
+        <div className="form-inputs">
           <input
             type="email"
             name="email"
@@ -57,8 +58,6 @@ const Register = () => {
             autoComplete="off"
             required
           />
-        </div>
-        <div>
           <input
             type="password"
             name="password"
@@ -68,8 +67,6 @@ const Register = () => {
             autoComplete="new-password"
             required
           />
-        </div>
-        <div>
           <input
             type="password"
             name="password_confirmation"
@@ -82,7 +79,7 @@ const Register = () => {
         </div>
         <button type="submit">Registrar</button>
       </form>
-      <button onClick={() => navigate(`/login`)}>Registarse</button>
+      <button onClick={() => navigate(`/login`)}>Ya tengo una cuenta</button>
     </div>
   );
 };

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import '../styles/forms.css'
 
 const CarForm = () => {
   const { id } = useParams();
@@ -58,25 +59,25 @@ const CarForm = () => {
 
       if (id) {
         await axios.put(`${apiBaseUrl}/api/v1/cars/${id}`, carPayload, { headers });
-        toast.success('Auto actualizado exitosamente');  // Notificación de éxito
+        toast.success('Auto actualizado exitosamente');
       } else {
         await axios.post(`${apiBaseUrl}/api/v1/cars`, carPayload, { headers });
-        toast.success('Auto creado exitosamente');  // Notificación de éxito
+        toast.success('Auto creado exitosamente');
       }
 
       navigate('/');
 
     } catch (error) {
       console.error('Error al guardar el auto', error);
-      toast.error('Error al guardar el auto');  // Notificación de error
+      toast.error('Error al guardar el auto');
     }
   };
 
   return (
-    <div>
+    <div className='form-card'>
       <h2>{id ? 'Editar Auto' : 'Crear Auto'}</h2>
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className='form-inputs'>
           <input
             type="text"
             name="plate_number"
@@ -85,8 +86,6 @@ const CarForm = () => {
             placeholder="Número de placa"
             required
           />
-        </div>
-        <div>
           <input
             type="text"
             name="model"
@@ -95,8 +94,6 @@ const CarForm = () => {
             placeholder="Modelo"
             required
           />
-        </div>
-        <div>
           <input
             type="number"
             name="year"

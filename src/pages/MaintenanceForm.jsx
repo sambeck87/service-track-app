@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import '../styles/forms.css'
 
 const MaintenanceForm = () => {
   const [formData, setFormData] = useState({
@@ -98,22 +99,19 @@ const MaintenanceForm = () => {
   };
 
   return (
-    <div>
+    <div className='form-card'>
       <h2>{id ? 'Editar Mantenimiento' : 'Crear Mantenimiento'}</h2>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="car_id">Car ID:</label>
+        <div className='form-inputs'>
           <input
             type="text"
             id="car_id"
             name="car_id"
             value={formData.car_id}
             onChange={handleChange}
+            placeholder="car_id"
             required
           />
-        </div>
-        <div>
-          <label htmlFor="status">Status:</label>
           <select
             id="status"
             name="status"
@@ -126,19 +124,14 @@ const MaintenanceForm = () => {
             <option value="in_progress">En progreso</option>
             <option value="completed">Completado</option>
           </select>
-        </div>
-        <div>
-          <label htmlFor="description">Descripción:</label>
           <textarea
             id="description"
             name="description"
             value={formData.description}
             onChange={handleChange}
+            placeholder='descripcion'
             required
           />
-        </div>
-        <div>
-          <label htmlFor="date">Fecha:</label>
           <input
             type="date"
             id="date"
