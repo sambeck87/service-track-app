@@ -35,7 +35,7 @@ This React project provides the user interface for the ServiceTrack API, enablin
 
 ## 🛠 Backend repository: <a name="frontend"></a>
 
-To visit the frontend repository, please [click here](https://github.com/sambeck87/service-track-API).
+To visit the backend repository, please [click here](https://github.com/sambeck87/service-track-API).
 
 ## 🛠 Built With <a name="built-with"></a>
 
