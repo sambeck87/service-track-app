@@ -33,8 +33,6 @@
 
 This React project provides the user interface for the ServiceTrack API, enabling user registration and login, vehicle management (creation, modification, viewing), and maintenance record tracking.
 
-**Note**: The deployment of this project was done with a free instance on render.com. These instances are disabled after a few minutes of inactivity. So it is suggested that, in case there is a failure when trying to access the page, try again after a couple of minutes of waiting.
-
 ## 🛠 Backend repository: <a name="frontend"></a>
 
 To visit the frontend repository, please [click here](https://github.com/sambeck87/service-track-API).
@@ -83,6 +81,8 @@ The maintenance list is paginated and you can choose between 10, 50 or 100 items
 ## Live_Demo <a name="live-demo"></a>
 
 - [Live Demo Version](https://service-track-app.onrender.com)
+
+**Note**: The deployment of this project was done with a free instance on render.com. These instances are disabled after a few minutes of inactivity. So it is suggested that, in case there is a failure when trying to access the page, try again after a couple of minutes of waiting.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
